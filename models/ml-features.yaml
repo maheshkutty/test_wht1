@@ -1,0 +1,39 @@
+# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
+models:
+  - name: domain_profile_id_stitcher
+    model_type: id_stitcher
+    model_spec:
+      validity_time: 24h # 1 day
+      entity_key: user
+      main_id_type: main_id
+      edge_sources:
+        - input: rsIdentifies
+        - input: rsTracks
+# Remove the section below, if you don't want to generate a feature table
+  # - name: domain_profile
+  #   model_type: feature_table_model
+  #   model_spec:
+  #     validity_time: 24h # 1 day
+  #     id_stitching:
+  #       model: domain_profile_id_stitcher
+  #     features:
+  #       - tablevar:
+  #           name: first_seen
+  #           ref:
+  #             input: rsTracks
+  #           value: min(to_date(timestamp))
+  #       - tablevar:
+  #           name: last_seen
+  #           ref:
+  #             input: rsTracks
+  #           value: max(to_date(timestamp))
+  #       - feature:
+  #           name: user_lifespan
+  #           value: last_seen - first_seen
+  #           description: Life Time Value of a customer
+  #       - tablefeature:
+  #           name: days_active
+  #           ref:
+  #             input: rsTracks
+  #           value: count(distinct to_date(timestamp))
+  #           description: No. of days a customer was active

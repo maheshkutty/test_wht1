@@ -1,0 +1,20 @@
+# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
+inputs:
+  - name: rsIdentifies
+    table: analytics_db.blastradio_data.blast_rs_identifies
+    timestamp_col: timestamp
+    ids:
+      - sql: "user_id"
+        type: user_id
+      - sql: "anonymous_id"
+        type: anonymous_id
+      - sql: "lower(email)"
+        type: email
+  - name: rsTracks
+    view: rudder_test_events.faker_schema.view_may22_blast_rs_tracks
+    timestamp_col: timestamp
+    ids:
+      - sql: "user_id"
+        type: user_id
+      - sql: "anonymous_id"
+        type: anonymous_id
